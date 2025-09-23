@@ -1,3 +1,8 @@
+# 0.8.0
+
+-   Add support for multiple custom class names separated by a space.
+-   Add new option `ignoreAttributes` which will ignore attribute names and values when comparing nodes.
+
 # 0.7.2
 
 -   Support IE11 without polyfills and transpiling.
