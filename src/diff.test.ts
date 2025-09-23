@@ -169,7 +169,7 @@ test.each<[string, Node, Node, string, Options | undefined]>([
         })(),
         '<img src="image.jpg">',
         {
-            ignoreAttributes: true
+            ignoreAttributes: true,
         },
     ],
     [
@@ -382,7 +382,7 @@ test.each<[string, Node, Node, string, Options | undefined]>([
         htmlToFragment('<div><img src="image.jpg"></div>'),
         '<div><img src="image.jpg"></div>',
         {
-            ignoreAttributes: true
+            ignoreAttributes: true,
         },
     ],
     [
@@ -398,7 +398,7 @@ test.each<[string, Node, Node, string, Options | undefined]>([
         htmlToFragment('<p data-value="new">test</p>'),
         '<p data-value="new">test</p>',
         {
-            ignoreAttributes: true
+            ignoreAttributes: true,
         },
     ],
     [
@@ -414,7 +414,7 @@ test.each<[string, Node, Node, string, Options | undefined]>([
         htmlToFragment('<p data-value="new">hello</p>'),
         '<p data-value="new"><del class="vdd-removed">test</del><ins class="vdd-added">hello</ins></p>',
         {
-            ignoreAttributes: true
+            ignoreAttributes: true,
         },
     ],
     [
@@ -483,7 +483,9 @@ test.each<[string, Node, Node, string, Options | undefined]>([
     ],
     [
         'custom class names',
-        htmlToFragment('<strong>Modified</strong> Removed <h1 id="heading">heading</h1>'),
+        htmlToFragment(
+            '<strong>Modified</strong> Removed <h1 id="heading">heading</h1>',
+        ),
         htmlToFragment('Modified Added <h1 id="heading-2">heading 2</h1>'),
         '<ins class="MODIFIED">Modified</ins> <del class="REMOVED">Remov</del><ins class="ADDED">Add</ins>ed <h1 id="heading-2" class="MODIFIED">heading<ins class="ADDED"> 2</ins></h1>',
         {
@@ -494,7 +496,9 @@ test.each<[string, Node, Node, string, Options | undefined]>([
     ],
     [
         'multiple custom class names',
-        htmlToFragment('<strong>Modified</strong> Removed <h1 id="heading">heading</h1>'),
+        htmlToFragment(
+            '<strong>Modified</strong> Removed <h1 id="heading">heading</h1>',
+        ),
         htmlToFragment('Modified Added <h1 id="heading-2">heading 2</h1>'),
         '<ins class="MODIFIED MODIFIED-2">Modified</ins> <del class="REMOVED REMOVED-2">Remov</del><ins class="ADDED ADDED-2">Add</ins>ed <h1 id="heading-2" class="MODIFIED MODIFIED-2">heading<ins class="ADDED ADDED-2"> 2</ins></h1>',
         {
@@ -975,12 +979,8 @@ test.each<[string, Node, Node, string, Options | undefined]>([
     ],
     [
         'ignore different attribute names',
-        htmlToFragment(
-            '<span data-a="a">foo</span>',
-        ),
-        htmlToFragment(
-            '<span data-b="b">foo</span>',
-        ),
+        htmlToFragment('<span data-a="a">foo</span>'),
+        htmlToFragment('<span data-b="b">foo</span>'),
         '<span data-b="b">foo</span>',
         {
             ignoreAttributes: true,
@@ -988,12 +988,8 @@ test.each<[string, Node, Node, string, Options | undefined]>([
     ],
     [
         'ignore different attribute values',
-        htmlToFragment(
-            '<span data-a="a">foo</span>',
-        ),
-        htmlToFragment(
-            '<span data-a="b">foo</span>',
-        ),
+        htmlToFragment('<span data-a="a">foo</span>'),
+        htmlToFragment('<span data-a="b">foo</span>'),
         '<span data-a="b">foo</span>',
         {
             ignoreAttributes: true,
@@ -1001,12 +997,8 @@ test.each<[string, Node, Node, string, Options | undefined]>([
     ],
     [
         'real-life case for ignoring attributes in markdown-generated headings',
-        htmlToFragment(
-            '<h1 id="heading">heading</h1>',
-        ),
-        htmlToFragment(
-            '<h1 id="heading-2">heading 2</h1>',
-        ),
+        htmlToFragment('<h1 id="heading">heading</h1>'),
+        htmlToFragment('<h1 id="heading-2">heading 2</h1>'),
         '<h1 id="heading-2">heading<ins class="vdd-added"> 2</ins></h1>',
         {
             ignoreAttributes: true,

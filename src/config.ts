@@ -123,10 +123,10 @@ export function optionsToConfig({
     return {
         addedClass,
         diffText,
+        ignoreAttributes,
         modifiedClass,
         removedClass,
         skipModified,
-        ignoreAttributes,
         skipChildren(node: Node): boolean {
             if (
                 !isElement(node) &&

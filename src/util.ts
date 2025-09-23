@@ -316,7 +316,9 @@ export function markUpNode(
     } else if (
         previousSibling &&
         previousSibling.nodeName === elementName &&
-        [...(className.trim().split(/\s+/))].every(c => (previousSibling as Element).classList.contains(c))
+        [...className.trim().split(/\s+/)].every(c =>
+            (previousSibling as Element).classList.contains(c),
+        )
     ) {
         previousSibling.appendChild(node)
     } else {
